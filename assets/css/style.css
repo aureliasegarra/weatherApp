@@ -6,11 +6,25 @@ body {
     background-position: center center;
     color: white;
     text-shadow: 2px 2px 1px black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif, arial, Helvetica;
+    display: flex;
+    
 }
-
+.titleContainer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.mainTitle{
+    color: white;
+    font-family: sans-serif, arial, Helvetica;
+    font-size: 60px;
+    text-shadow: none;
+    visibility: visible;
+}
 #weatherContainer {
-    background-color: rgba(0,0,0,0.25);
+    background-color: rgba(0,0,0,0.15);
     box-shadow: 1px 1px 5px black;
     padding: 50px;
     border-radius: 10px;
@@ -18,7 +32,7 @@ body {
     visibility: hidden;
 }
 
-#weatherContainer h1 {
+#weatherContainer h2 {
     margin: 5px;
     font-size: 42px;
     font-family: 'Lucida Grande', sans-serif;
@@ -35,18 +49,19 @@ body {
      width: 200px;
  }
  #searchContainer button {
-     background-color: rgb(1,159,198);
-     width: 75px;
+     background-color: #e9c454;
+     width: 100px;
  }
  .searchControl {
      width: 100%;
      max-width: 280px;
      padding: 10px 15px;
+     margin: 3px;
      border: none;
      outline: none;
      background-color: rgba(255,255,255,0.6);
-     border-radius: 16px 0px 16px 0px;
-     border-bottom: 3px solid rgb(1,159,198);
+     border-radius: 15px;
+     border-bottom: 3px solid rgb(101, 101, 99);
      color: #313131;
      font-size: 20px;
      font-weight: 300px;

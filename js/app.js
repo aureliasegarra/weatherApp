@@ -2,14 +2,14 @@ const apiKey = "51bc7bf8dab28412d8d6b3722a3bab8a";
 let units = 'metric';
 let searchMethod;
 
-function getSearchMethod(searchTerm) {
+getSearchMethod = (searchTerm)=> {
     if(searchTerm.length === 5 && Number.parseInt(searchTerm) + '' === searchTerm)
         searchMethod ='zip';
         else 
         searchMethod = 'q';
-}
+};
 
-function searchWeather (searchTerm) {
+searchWeather = (searchTerm) => {
     getSearchMethod(searchTerm);
     fetch(`http://api.openweathermap.org/data/2.5/weather?${searchMethod}=${searchTerm}&APPID=${apiKey}&units=${units}`)
     .then(result => {
@@ -19,31 +19,35 @@ function searchWeather (searchTerm) {
     })
 };
 
-function init(resultFromServer) {
+init = (resultFromServer) => {
     console.log(resultFromServer)
     switch (resultFromServer.weather[0].main) {
         case 'Clear':
             document.body.style.backgroundImage = 'url("images/clear.jpg")';
             break;
         case 'Clouds':
-            document.body.style.backgroundImage = 'url("images/clear.jpg")';
+            document.body.style.backgroundImage = 'url("images/clouds.jpg")';
             break;
         case 'Rain':
-            document.body.style.backgroundImage = 'url("images/rainy.jpg")';
+            document.body.style.backgroundImage = 'url("images/rain.jpg")';
             break;
         case 'Drizzle':
-            document.body.style.backgroundImage = 'url("images/clear.jpg")';
+            document.body.style.backgroundImage = 'url("images/drizzle.jpg")';
             break;
         case 'Thunderstorm':
             document.body.style.backgroundImage = 'url("images/storm.jpg")';
             break;
         case 'Mist':
-            document.body.style.backgroundImage = 'url("images/snow.jpg")';
+            document.body.style.backgroundImage = 'url("images/mist.jpg")';
             break;
+        case 'Snow':
+        document.body.style.backgroundImage = 'url("images/snow.jpg")';
+        break;
         default:
             document.body.style.backgroundImage = 'url("images/default.jpg")';
             break;
-    }
+    };
+
     let weatherDescriptionHeader = document.getElementById('weatherDescriptionHeader');
     let temperatureElement = document.getElementById('temperature');
     let humidityElement = document.getElementById('humidity');
@@ -64,20 +68,23 @@ function init(resultFromServer) {
     setPositionForWeatherInfo();
 };
 
-function setPositionForWeatherInfo() {
+setPositionForWeatherInfo = () => {
     let weatherContainer = document.getElementById('weatherContainer');
+    let mainTitle = document.querySelector('.mainTitle');
     let weatherContainerHeight = weatherContainer.clientHeight;
     let weatherContainerWidth = weatherContainer.clientWidth;
 
     weatherContainer.style.left = `calc(50% - ${weatherContainerWidth/2}px)`;
     weatherContainer.style.top = `calc(50% - ${weatherContainerHeight/1.3}px)`;
     weatherContainer.style.visibility = 'visible';
-}
+    mainTitle.style.visibility = 'hidden';
+};
 
 document.getElementById('searchBtn').addEventListener('click', () => {
     let searchTerm = document.getElementById('searchInput').value;
     if(searchTerm) {
         searchWeather(searchTerm);
     }
+    
 });
 
